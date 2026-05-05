@@ -5,9 +5,9 @@
     y="38"
     fill="#fafafa"
     font-family="'JetBrains Mono', 'Geist Mono', ui-monospace, monospace"
-    font-size="27"
+    font-size="46"
     font-weight="700"
-    letter-spacing="-2"
+    letter-spacing="1"
     text-anchor="middle"
     dominant-baseline="middle"
   >
