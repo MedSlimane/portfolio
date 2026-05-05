@@ -7,6 +7,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 
 import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/lib/site";
 
 const projects = [
   {
@@ -47,17 +48,17 @@ const skillGroups = [
 const links = [
   {
     label: "GitHub",
-    href: "https://github.com/MedSlimane",
+    href: siteConfig.github,
     icon: GithubLogo,
   },
   {
     label: "LinkedIn",
-    href: "https://linkedin.com/in/mohamed-slimane-182aa9264",
+    href: siteConfig.linkedin,
     icon: LinkedinLogo,
   },
   {
     label: "Email",
-    href: "mailto:mohamed.slimane@esprit.tn",
+    href: `mailto:${siteConfig.email}`,
     icon: EnvelopeSimple,
   },
   {
@@ -71,9 +72,46 @@ const headerLinks = links.filter(({ label }) =>
   ["GitHub", "LinkedIn"].includes(label),
 );
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  email: siteConfig.email,
+  jobTitle: "Software Engineering Student",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Tunis",
+    addressCountry: "TN",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "ESPRIT",
+  },
+  knowsAbout: [
+    "Mobile development",
+    "Full-stack development",
+    "Cloud deployments",
+    "AI agents",
+    "React",
+    "Next.js",
+    "Flutter",
+    "SwiftUI",
+    "Kotlin Jetpack Compose",
+    "Go",
+  ],
+  sameAs: [siteConfig.github, siteConfig.linkedin],
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <div className="mx-auto flex w-full max-w-5xl flex-col px-6 py-8 sm:px-8 lg:px-10">
         <header className="flex flex-col gap-6 border-b py-6 sm:flex-row sm:items-center sm:justify-between">
           <a
@@ -249,7 +287,7 @@ export default function Home() {
             </div>
             <Button asChild variant="outline">
               <a
-                href="https://github.com/MedSlimane"
+                href={siteConfig.github}
                 target="_blank"
                 rel="noreferrer"
               >
