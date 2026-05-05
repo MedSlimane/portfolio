@@ -67,6 +67,10 @@ const links = [
   },
 ];
 
+const headerLinks = links.filter(({ label }) =>
+  ["GitHub", "LinkedIn"].includes(label),
+);
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -79,26 +83,48 @@ export default function Home() {
           >
             Mohamed Slimane
           </a>
-          <nav className="flex flex-wrap gap-1 text-xs text-muted-foreground">
-            <a
-              className="px-2 py-1 transition-colors hover:text-foreground"
-              href="#work"
-            >
-              Work
-            </a>
-            <a
-              className="px-2 py-1 transition-colors hover:text-foreground"
-              href="#skills"
-            >
-              Skills
-            </a>
-            <a
-              className="px-2 py-1 transition-colors hover:text-foreground"
-              href="#contact"
-            >
-              Contact
-            </a>
-          </nav>
+          <div className="flex flex-wrap items-center gap-3">
+            <nav className="flex flex-wrap gap-1 text-xs text-muted-foreground">
+              <a
+                className="px-2 py-1 transition-colors hover:text-foreground"
+                href="#work"
+              >
+                Work
+              </a>
+              <a
+                className="px-2 py-1 transition-colors hover:text-foreground"
+                href="#skills"
+              >
+                Skills
+              </a>
+              <a
+                className="px-2 py-1 transition-colors hover:text-foreground"
+                href="#github"
+              >
+                GitHub
+              </a>
+              <a
+                className="px-2 py-1 transition-colors hover:text-foreground"
+                href="#contact"
+              >
+                Contact
+              </a>
+            </nav>
+            <div className="flex gap-1">
+              {headerLinks.map(({ href, icon: Icon, label }) => (
+                <Button asChild key={label} size="icon-xs" variant="ghost">
+                  <a
+                    href={href}
+                    aria-label={label}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Icon aria-hidden="true" />
+                  </a>
+                </Button>
+              ))}
+            </div>
+          </div>
         </header>
 
         <section
@@ -209,6 +235,37 @@ export default function Home() {
                 </p>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section id="github" className="border-t py-14">
+          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 className="text-xl font-semibold">GitHub activity</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Recent contribution graph for public work and open-source
+                activity.
+              </p>
+            </div>
+            <Button asChild variant="outline">
+              <a
+                href="https://github.com/MedSlimane"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View profile
+                <GithubLogo aria-hidden="true" />
+              </a>
+            </Button>
+          </div>
+          <div className="overflow-hidden border bg-muted/20 p-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="h-auto min-h-32 w-full"
+              src="https://ghchart.rshah.org/18181b/MedSlimane"
+              alt="Mohamed Slimane GitHub contribution graph"
+              loading="lazy"
+            />
           </div>
         </section>
 
